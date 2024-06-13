@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Post qo'shish{% endblock title %}
+{% block content %}
+<h1>Post qo'shish</h1>
+<form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
+  <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Title</label>
+      <input required name="title" type="text" class="form-control" id="exampleFormControlInput1">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput11" class="form-label">Summary</label>
+      <input required name="summary" type="text" class="form-control" id="exampleFormControlInput11">
+    </div>
+    {{ form.media }}
+    {{ form.as_p }}
+    <div class="mb-3">
+      <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+      <input name="image" class="form-control" type="file" id="formFileMultiple" multiple>
+    </div>
+  <br>
+  <button type="submit" class="btn btn-primary">Saqlash</button>
+</form>
+{% endblock content %}
