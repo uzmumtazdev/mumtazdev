@@ -141,7 +141,6 @@ MEDIA_URL = 'media/'
 
 
 LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
