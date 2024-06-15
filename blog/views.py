@@ -68,7 +68,7 @@ def search(request):
     if request.method == 'GET':
         query = request.GET.get('q', None)
         posts = Post.objects.filter(title__icontains=query)
-        return render(request, 'list.html', {"posts": posts})
+        return render(request, 'list.html', {"page_obj": posts})
     else:
         return render(request, 'list.html')
 
