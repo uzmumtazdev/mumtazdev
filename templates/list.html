@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Bosh sahifa{% endblock title %}
+{% block content %}
+    <h2>Fan va texnalogiyaga oid yangiliklar va maqolalar</h2><br><br><br>
+    {% for post in page_obj %}
+    <a style="text-decoration: none; color:black;" href="/post/{{post.id}}/">
+        <div class="card" style="width: 30rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{post.title}}</h5>
+          </div>
+            {% if post.image %}
+          <img src="{{ post.image.url }}" class="card-img-top" alt="...">
+            {% endif %}
+          <div class="card-body">
+            <p class="card-text">{{post.summary}}</p>
+            <a href="/post/{{ post.id }}/" class="btn btn-primary">Batafsil</a>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Sana: {{ post.time }} | Muallif: {{ post.author|title }}</small>
+          </div>
+        </div>
+    </a><br><br><br>
+    {% endfor %}
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+      {% if page_obj.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+      {% endif %}
+        {% for page in page_obj.paginator.page_range %}
+          <li class="page-item {% if page_obj.number == page %} active {% endif %}">
+            <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+          </li>
+        {% endfor %}
+
+      {% if page_obj.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+      {% endif %}
+  </ul>
+</nav>
+{% endblock content %}
